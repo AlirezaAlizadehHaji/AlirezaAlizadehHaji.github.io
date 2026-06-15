@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Alireza Alizadeh Haji — Backend Engineer & PhD Student</title>
+<meta name="description" content="Software Engineer with 3+ years in distributed systems, microservices, and backend architecture. PhD student at IUST researching agentic AI."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"/>
+<style>
+:root {
+  --bg:        #0a0e1a;
+  --bg2:       #111827;
+  --bg3:       #1a2235;
+  --border:    #1e2d45;
+  --blue:      #4f9ef8;
+  --blue-dim:  #1f4e79;
+  --purple:    #7c5cfc;
+  --green:     #3ddbd9;
+  --text:      #e6edf3;
+  --text-dim:  #8b949e;
+  --text-muted:#4d5b6b;
+  --radius:    12px;
+  --transition: 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ─────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 3px; }
+
+/* ── Nav ─────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem;
+  height: 60px;
+  background: rgba(10,14,26,.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .9rem;
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--text-dim); text-decoration: none;
+  font-size: .85rem; font-weight: 500;
+  transition: color var(--transition);
+}
+.nav-links a:hover { color: var(--blue); }
+
+/* ── Hero ─────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79,158,248,.12) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .35rem 1rem;
+  background: rgba(79,158,248,.1);
+  border: 1px solid rgba(79,158,248,.3);
+  border-radius: 100px;
+  font-size: .78rem; font-weight: 500; color: var(--blue);
+  margin-bottom: 1.5rem;
+  animation: fadeDown .6s ease both;
+}
+
+.hero-badge::before { content: '●'; color: #3ddb84; font-size: .55rem; }
+
+h1.hero-name {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #e6edf3 30%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: .75rem;
+  animation: fadeDown .6s .1s ease both;
+}
+
+.hero-typing {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  color: var(--blue);
+  height: 1.8rem;
+  margin-bottom: 1.5rem;
+  animation: fadeDown .6s .2s ease both;
+}
+
+.hero-typing span { border-right: 2px solid var(--blue); padding-right: 3px; }
+
+.hero-desc {
+  max-width: 600px;
+  color: var(--text-dim);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  animation: fadeDown .6s .3s ease both;
+}
+
+.hero-stats {
+  display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 2.5rem;
+  animation: fadeDown .6s .4s ease both;
+}
+
+.stat { text-align: center; }
+.stat-num { font-size: 1.8rem; font-weight: 700; color: var(--blue); font-family: 'JetBrains Mono', monospace; }
+.stat-label { font-size: .75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; }
+
+.hero-btns {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  animation: fadeDown .6s .5s ease both;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .65rem 1.5rem;
+  border-radius: 8px;
+  font-size: .9rem; font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition);
+  cursor: pointer; border: none;
+}
+
+.btn-primary {
+  background: var(--blue); color: #0a0e1a;
+}
+.btn-primary:hover { background: #6fb0ff; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(79,158,248,.35); }
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+.btn-outline:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+
+.scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  color: var(--text-muted); font-size: .75rem; letter-spacing: .1em;
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  animation: bounce 2s infinite;
+}
+
+/* ── Sections ─────────────── */
+section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem; font-weight: 500;
+  color: var(--blue); text-transform: uppercase;
+  letter-spacing: .12em; margin-bottom: .75rem;
+}
+
+h2.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700; color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.section-line {
+  width: 48px; height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  border-radius: 2px; margin-bottom: 3rem;
+}
+
+/* ── About ────────────────── */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+
+.about-text p { color: var(--text-dim); margin-bottom: 1rem; line-height: 1.8; }
+
+.about-cards { display: flex; flex-direction: column; gap: 1rem; }
+
+.about-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+  transition: border-color var(--transition);
+}
+.about-card:hover { border-color: var(--blue); }
+.about-card-icon { font-size: 1.4rem; flex-shrink: 0; }
+.about-card-title { font-weight: 600; font-size: .9rem; margin-bottom: .2rem; }
+.about-card-sub { color: var(--text-dim); font-size: .82rem; }
+
+/* ── Experience ───────────── */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: '';
+  position: absolute; left: 0; top: 8px; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--blue), var(--purple), transparent);
+}
+
+.timeline-item {
+  position: relative; margin-bottom: 2.5rem;
+  opacity: 0; transform: translateX(-20px);
+  transition: all .5s ease;
+}
+.timeline-item.visible { opacity: 1; transform: translateX(0); }
+
+.timeline-dot {
+  position: absolute; left: -2.45rem; top: 6px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--blue); border: 2px solid var(--bg);
+  box-shadow: 0 0 12px rgba(79,158,248,.6);
+}
+
+.timeline-header { display: flex; flex-wrap: wrap; align-items: baseline; gap: .75rem; margin-bottom: .35rem; }
+.timeline-role { font-weight: 700; font-size: 1rem; color: var(--text); }
+.timeline-company { color: var(--blue); font-size: .9rem; font-weight: 500; }
+.timeline-period {
+  margin-left: auto; font-size: .78rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-muted);
+  background: var(--bg3); padding: .2rem .65rem;
+  border-radius: 100px;
+}
+
+.timeline-body { color: var(--text-dim); font-size: .9rem; }
+.timeline-body ul { padding-left: 1.2rem; margin-top: .5rem; }
+.timeline-body li { margin-bottom: .35rem; }
+
+.tag-row { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .75rem; }
+.tag {
+  font-size: .72rem; font-weight: 500;
+  padding: .2rem .6rem;
+  border-radius: 100px;
+  background: rgba(79,158,248,.1);
+  border: 1px solid rgba(79,158,248,.2);
+  color: var(--blue);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Projects ─────────────── */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+
+.project-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex; flex-direction: column;
+  transition: all var(--transition);
+  opacity: 0; transform: translateY(20px);
+  cursor: pointer; text-decoration: none; color: inherit;
+}
+.project-card.visible { opacity: 1; transform: translateY(0); }
+.project-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(79,158,248,.15);
+}
+
+.project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+.project-icon { font-size: 1.8rem; }
+.project-status {
+  font-size: .7rem; font-weight: 600;
+  padding: .15rem .5rem; border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.status-prod { background: rgba(61,219,132,.1); color: #3ddb84; border: 1px solid rgba(61,219,132,.25); }
+.status-beta { background: rgba(255,193,7,.1); color: #ffc107; border: 1px solid rgba(255,193,7,.25); }
+.status-research { background: rgba(124,92,252,.1); color: var(--purple); border: 1px solid rgba(124,92,252,.25); }
+
+.project-title { font-weight: 700; font-size: 1rem; margin-bottom: .5rem; }
+.project-desc { color: var(--text-dim); font-size: .875rem; line-height: 1.6; flex: 1; margin-bottom: 1rem; }
+.project-link { color: var(--blue); font-size: .8rem; font-weight: 500; display: flex; align-items: center; gap: .3rem; }
+
+/* ── Skills ───────────────── */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+
+.skill-group {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: border-color var(--transition);
+}
+.skill-group:hover { border-color: var(--blue); }
+.skill-group-title {
+  font-size: .78rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--blue);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 1rem;
+}
+
+.skill-pills { display: flex; flex-wrap: wrap; gap: .4rem; }
+.skill-pill {
+  font-size: .78rem; padding: .3rem .75rem;
+  border-radius: 6px;
+  background: var(--bg3); border: 1px solid var(--border);
+  color: var(--text-dim); font-weight: 500;
+  transition: all var(--transition);
+}
+.skill-pill:hover { border-color: var(--blue); color: var(--blue); }
+
+/* ── Research ─────────────── */
+.research-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+.research-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  position: relative; overflow: hidden;
+  transition: border-color var(--transition);
+}
+.research-card:hover { border-color: var(--purple); }
+.research-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+}
+
+.research-level {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--purple);
+  margin-bottom: .75rem;
+}
+
+.research-title { font-size: 1rem; font-weight: 700; margin-bottom: .75rem; }
+.research-body { color: var(--text-dim); font-size: .875rem; line-height: 1.7; }
+
+/* ── Education ────────────── */
+.edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+
+.edu-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex; gap: 1rem;
+  transition: border-color var(--transition);
+}
+.edu-card:hover { border-color: var(--blue); }
+
+.edu-badge {
+  flex-shrink: 0; width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--blue-dim);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+
+.edu-degree { font-weight: 700; font-size: .95rem; margin-bottom: .2rem; }
+.edu-institution { color: var(--blue); font-size: .82rem; margin-bottom: .2rem; }
+.edu-period { color: var(--text-muted); font-size: .78rem; font-family: 'JetBrains Mono', monospace; }
+.edu-thesis { color: var(--text-dim); font-size: .8rem; margin-top: .4rem; font-style: italic; }
+
+/* ── Contact ──────────────── */
+#contact { text-align: center; }
+.contact-links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 2rem; }
+
+.contact-card {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .9rem 1.5rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none; color: var(--text);
+  font-weight: 500; font-size: .9rem;
+  transition: all var(--transition);
+}
+.contact-card:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+.contact-card-icon { font-size: 1.2rem; }
+
+/* ── Footer ───────────────── */
+footer {
+  text-align: center; padding: 2rem;
+  color: var(--text-muted); font-size: .8rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Animations ───────────── */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── Responsive ───────────── */
+@media (max-width: 768px) {
+  .about-grid, .research-cards { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hero-stats { gap: 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────────── -->
+<nav>
+  <a class="nav-logo" href="#hero">alireza.dev</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-glow"></div>
+
+  <div class="hero-badge">Available for research collaborations &amp; academic exchange</div>
+
+  <h1 class="hero-name">Alireza Alizadeh Haji</h1>
+
+  <div class="hero-typing"><span id="typing-text"></span></div>
+
+  <p class="hero-desc">
+    Backend engineer building high-throughput distributed systems in production.
+    PhD student at IUST exploring agentic AI and adversarial robustness.
+  </p>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years Production</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">12</div>
+      <div class="stat-label">Enterprise Systems</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">30k</div>
+      <div class="stat-label">Records / Sec</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1M+</div>
+      <div class="stat-label">Records Handled</div>
+    </div>
+  </div>
+
+  <div class="hero-btns">
+    <a class="btn btn-primary" href="https://github.com/AlirezaAlizadehHaji" target="_blank">GitHub Profile</a>
+    <a class="btn btn-outline" href="https://linkedin.com/in/4lir8za" target="_blank">LinkedIn</a>
+    <a class="btn btn-outline" href="mailto:alizadehhaji1378@gmail.com">Email Me</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <span>↓</span>
+  </div>
+</section>
+
+<!-- ── About ─────────────────────────────────────── -->
+<section id="about">
+  <div class="section-label">01 / About</div>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="section-line"></div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I build high-throughput, resilient backend systems — payment engines, real-time analytics pipelines,
+        IoT command layers, and observability stacks. Over three years of production experience at a major
+        Iranian automotive manufacturer (MVM Co.) and a smart-transportation analytics startup (Jarfpouyan Hooshmand).
+      </p>
+      <p>
+        I'm currently a first-year PhD student in Software Engineering at
+        <strong>Iran University of Science and Technology (IUST)</strong>, working in the
+        <strong>ABDAL Lab</strong> under Dr. Hossein Rahmani. My research explores whether
+        agentic, LLM-based systems can maintain robust detection against adaptive AI-driven
+        fraud and social engineering adversaries.
+      </p>
+      <p>
+        I'm actively looking for <strong>research collaborations and academic exchange
+        opportunities</strong> with professors working on agentic AI, software reliability,
+        or AI-driven security.
+      </p>
+    </div>
+
+    <div class="about-cards">
+      <div class="about-card">
+        <div class="about-card-icon">🎓</div>
+        <div>
+          <div class="about-card-title">PhD Student</div>
+          <div class="about-card-sub">IUST · ABDAL Lab · Dr. Hossein Rahmani · 2025–present</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">⚙️</div>
+        <div>
+          <div class="about-card-title">Backend Engineer & Data Analyst</div>
+          <div class="about-card-sub">Jarfpouyan Hooshmand · Feb 2025–present</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">📍</div>
+        <div>
+          <div class="about-card-title">Location</div>
+          <div class="about-card-sub">Tehran, Iran</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🌐</div>
+        <div>
+          <div class="about-card-title">Languages</div>
+          <div class="about-card-sub">Persian (native) · English (professional)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Experience ─────────────────────────────────── -->
+<section id="experience">
+  <div class="section-label">02 / Experience</div>
+  <h2 class="section-title">Where I've Worked</h2>
+  <div class="section-line"></div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <span class="timeline-role">Backend Engineer & Data Analyst</span>
+        <span class="timeline-company">Jarfpouyan Hooshmand</span>
+        <span class="timeline-period">Feb 2025 – Present</span>
+      </div>
+      <div class="timeline-body">
+        <ul>
+          <li>Designed a real-time passenger analytics platform for multi-modal transport operators — sustaining <strong>30,000 records/sec</strong> via Kafka across <strong>1M+ records</strong></li>
+          <li>Built a unified multi-source ingestion layer combining Kafka streaming, file-based batch, and REST API feeds via Django + Celery</li>
+          <li>Implemented Elasticsearch OLAP tier with k-means clustering, RFM segmentation, and anomaly detection — sub-second response without pre-aggregation</li>
+          <li>Designed columnar OLAP warehouse schema aligned to airline, rail, and bus domain semantics</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Apache Kafka</span><span class="tag">Elasticsearch</span>
+          <span class="tag">Django</span><span class="tag">Celery</span>
+          <span class="tag">k-means</span><span class="tag">RFM</span><span class="tag">Python</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <span class="timeline-role">Senior .NET Backend Engineer</span>
+        <span class="timeline-company">Modiran Vehicle Manufacturing (MVM Co.)</span>
+        <span class="timeline-period">Jun 2025 – Oct 2025</span>
+      </div>
+      <div class="timeline-body">
+        <ul>
+          <li>Promoted to Senior, taking ownership of B2C business logic across MVM's customer-facing product suite</li>
+          <li>Led architectural decisions on the core sales system, financial services, and community engagement platform</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">.NET Core</span><span class="tag">DDD</span><span class="tag">CQRS</span><span class="tag">Clean Architecture</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <span class="timeline-role">.NET Backend Engineer</span>
+        <span class="timeline-company">Modiran Vehicle Manufacturing (MVM Co.)</span>
+        <span class="timeline-period">Jan 2023 – May 2025</span>
+      </div>
+      <div class="timeline-body">
+        <ul>
+          <li>Sole technical owner of <strong>12 mission-critical enterprise systems</strong>: payments, after-sales, B2C sales, customer service, and internal tooling</li>
+          <li>Built enterprise payment engine with full idempotency, PSP integration, and complete audit trail — handling national-scale volumes</li>
+          <li>Designed IoT command-dispatch layer over MQTT enabling remote vehicle control (engine start, door lock) from mobile app</li>
+          <li>Reduced microservice response times by <strong>30%</strong> via MSSQL query profiling, index optimization, and Redis hot-path caching</li>
+          <li>Deployed full observability: OpenTelemetry + Prometheus + Grafana + Loki + Jaeger across all 12 services</li>
+          <li>Architected S3-compatible object storage (MinIO + Ceph) replacing vendor lock-in, with custom CDN for static delivery</li>
+          <li>Integrated WSO2 Identity Server for enterprise SSO across all internal and customer-facing systems</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">.NET Core</span><span class="tag">MSSQL</span><span class="tag">Redis</span>
+          <span class="tag">MQTT</span><span class="tag">Ocelot</span><span class="tag">WSO2</span>
+          <span class="tag">MinIO</span><span class="tag">OpenTelemetry</span><span class="tag">Kafka</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Projects ───────────────────────────────────── -->
+<section id="projects">
+  <div class="section-label">03 / Projects</div>
+  <h2 class="section-title">Selected Work</h2>
+  <div class="section-line"></div>
+
+  <div class="projects-grid">
+
+    <a class="project-card" href="https://github.com/AlirezaAlizadehHaji/realtime-analytics-pipeline" target="_blank">
+      <div class="project-top">
+        <div class="project-icon">📡</div>
+        <div class="project-status status-beta">Beta</div>
+      </div>
+      <div class="project-title">Real-Time Passenger Analytics Platform</div>
+      <div class="project-desc">Kafka pipeline ingesting 30,000 records/sec with Elasticsearch OLAP tier — k-means, RFM segmentation, anomaly detection across 1M+ records. Django + Celery backend.</div>
+      <div class="tag-row"><span class="tag">Kafka</span><span class="tag">Elasticsearch</span><span class="tag">Python</span></div>
+      <div class="project-link" style="margin-top:.75rem">View on GitHub →</div>
+    </a>
+
+    <a class="project-card" href="https://github.com/AlirezaAlizadehHaji/clean-architecture-dotnet" target="_blank">
+      <div class="project-top">
+        <div class="project-icon">🏗️</div>
+        <div class="project-status status-prod">Reference</div>
+      </div>
+      <div class="project-title">Clean Architecture .NET</div>
+      <div class="project-desc">Production-grade reference: DDD aggregates, CQRS via MediatR, Outbox Pattern for reliable event publishing, Kafka integration. The pattern behind 12 live MVM systems.</div>
+      <div class="tag-row"><span class="tag">C#</span><span class="tag">DDD</span><span class="tag">CQRS</span><span class="tag">Outbox</span></div>
+      <div class="project-link" style="margin-top:.75rem">View on GitHub →</div>
+    </a>
+
+    <a class="project-card" href="https://github.com/AlirezaAlizadehHaji/observability-stack" target="_blank">
+      <div class="project-top">
+        <div class="project-icon">🔭</div>
+        <div class="project-status status-prod">Production</div>
+      </div>
+      <div class="project-title">Observability Stack</div>
+      <div class="project-desc">One-command Docker Compose: Prometheus + Grafana + Loki + Jaeger + OTel Collector. The same stack deployed across 12 distributed .NET services at MVM.</div>
+      <div class="tag-row"><span class="tag">OTel</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Jaeger</span></div>
+      <div class="project-link" style="margin-top:.75rem">View on GitHub →</div>
+    </a>
+
+    <a class="project-card" href="https://github.com/AlirezaAlizadehHaji/grey-wolf-optimizer" target="_blank">
+      <div class="project-top">
+        <div class="project-icon">🐺</div>
+        <div class="project-status status-research">Research</div>
+      </div>
+      <div class="project-title">Hybrid Grey Wolf Optimizer</div>
+      <div class="project-desc">Coverage-guided metaheuristic for automated software testing and fault localization. MSc thesis contribution (IUST 2025) — demonstrated improved mutation scores over baseline methods.</div>
+      <div class="tag-row"><span class="tag">Python</span><span class="tag">GWO</span><span class="tag">SE Research</span></div>
+      <div class="project-link" style="margin-top:.75rem">View on GitHub →</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── Skills ─────────────────────────────────────── -->
+<section id="skills">
+  <div class="section-label">04 / Skills</div>
+  <h2 class="section-title">Technical Stack</h2>
+  <div class="section-line"></div>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-pills">
+        <span class="skill-pill">C# / .NET</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">Java</span>
+        <span class="skill-pill">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Backend & Architecture</div>
+      <div class="skill-pills">
+        <span class="skill-pill">ASP.NET Core</span>
+        <span class="skill-pill">Django</span>
+        <span class="skill-pill">gRPC</span>
+        <span class="skill-pill">Clean Architecture</span>
+        <span class="skill-pill">DDD</span>
+        <span class="skill-pill">CQRS</span>
+        <span class="skill-pill">Outbox Pattern</span>
+        <span class="skill-pill">Microservices</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Messaging & Streaming</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Apache Kafka</span>
+        <span class="skill-pill">RabbitMQ</span>
+        <span class="skill-pill">MQTT</span>
+        <span class="skill-pill">Celery</span>
+        <span class="skill-pill">Hangfire</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Databases & Storage</div>
+      <div class="skill-pills">
+        <span class="skill-pill">SQL Server</span>
+        <span class="skill-pill">Elasticsearch</span>
+        <span class="skill-pill">Redis</span>
+        <span class="skill-pill">MinIO</span>
+        <span class="skill-pill">Ceph</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Observability</div>
+      <div class="skill-pills">
+        <span class="skill-pill">OpenTelemetry</span>
+        <span class="skill-pill">Prometheus</span>
+        <span class="skill-pill">Grafana</span>
+        <span class="skill-pill">Loki</span>
+        <span class="skill-pill">Jaeger</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">DevOps & Infrastructure</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Docker</span>
+        <span class="skill-pill">Kubernetes</span>
+        <span class="skill-pill">ArgoCD</span>
+        <span class="skill-pill">CI/CD</span>
+        <span class="skill-pill">Ocelot Gateway</span>
+        <span class="skill-pill">WSO2</span>
+        <span class="skill-pill">OAuth2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Research ───────────────────────────────────── -->
+<section id="research">
+  <div class="section-label">05 / Research</div>
+  <h2 class="section-title">Academic Work</h2>
+  <div class="section-line"></div>
+
+  <div class="research-cards">
+    <div class="research-card">
+      <div class="research-level">PhD — IUST · ABDAL Lab · 2025–present</div>
+      <div class="research-title">Agentic AI Against Adaptive Adversaries</div>
+      <div class="research-body">
+        Investigating whether agentic, LLM-based systems can maintain robust detection performance
+        against adaptive AI-driven fraud and social engineering attacks — adversaries that continuously
+        evolve their tactics, causing static classifiers to degrade rapidly. Early-stage; currently
+        conducting a structured literature review before committing to a formal research proposal.
+        <br/><br/>
+        <strong style="color:var(--text)">Supervisor:</strong> Dr. Hossein Rahmani, ABDAL Lab<br/>
+        <strong style="color:var(--text)">Coursework:</strong> NLP, Data Analysis, Dependable Systems, Big Data Analytics
+      </div>
+    </div>
+
+    <div class="research-card">
+      <div class="research-level">MSc Thesis — IUST · 2023–2025</div>
+      <div class="research-title">Hybrid GWO for Software Testing</div>
+      <div class="research-body">
+        <em>Enhancing Domain Coverage and Fault Detection Accuracy in Software Testing Using a
+        Hybrid Grey Wolf Optimization Algorithm.</em>
+        <br/><br/>
+        Proposed combining Grey Wolf Optimizer with coverage-guided test generation to improve
+        fault localization accuracy and domain coverage. Demonstrated measurable gains in mutation
+        score and branch coverage against baseline methods.
+        <br/><br/>
+        <strong style="color:var(--text)">Supervisor:</strong> Dr. Mohammad-Hadi Alaeiyan, K.N. Toosi University of Technology
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Education ──────────────────────────────────── -->
+<section id="education">
+  <div class="section-label">06 / Education</div>
+  <h2 class="section-title">Academic Background</h2>
+  <div class="section-line"></div>
+
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-badge">🎓</div>
+      <div>
+        <div class="edu-degree">PhD in Computer Software Engineering</div>
+        <div class="edu-institution">Iran University of Science and Technology (IUST)</div>
+        <div class="edu-period">Sep 2025 – Present</div>
+        <div class="edu-thesis">ABDAL Lab · Dr. Hossein Rahmani</div>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-badge">🎓</div>
+      <div>
+        <div class="edu-degree">MSc in Computer Software Engineering</div>
+        <div class="edu-institution">Iran University of Science and Technology (IUST)</div>
+        <div class="edu-period">Sep 2023 – May 2025</div>
+        <div class="edu-thesis">Hybrid GWO for automated software testing · Dr. Mohammad-Hadi Alaeiyan</div>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-badge">🏛️</div>
+      <div>
+        <div class="edu-degree">BSc in Computer Engineering</div>
+        <div class="edu-institution">Babol Noshirvani University of Technology (NIT)</div>
+        <div class="edu-period">Sep 2018 – Dec 2022</div>
+        <div class="edu-thesis">Android recipe app · RESTful API · Java · Retrofit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ────────────────────────────────────── -->
+<section id="contact">
+  <div class="section-label">07 / Contact</div>
+  <h2 class="section-title">Get in Touch</h2>
+  <div class="section-line" style="margin: 0 auto 1.5rem;"></div>
+  <p style="color:var(--text-dim); max-width:500px; margin: 0 auto 2rem;">
+    Open to research collaborations, academic exchange, and backend engineering opportunities.
+  </p>
+  <div class="contact-links">
+    <a class="contact-card" href="mailto:alizadehhaji1378@gmail.com">
+      <span class="contact-card-icon">✉️</span>
+      <span>alizadehhaji1378@gmail.com</span>
+    </a>
+    <a class="contact-card" href="https://linkedin.com/in/4lir8za" target="_blank">
+      <span class="contact-card-icon">💼</span>
+      <span>linkedin.com/in/4lir8za</span>
+    </a>
+    <a class="contact-card" href="https://github.com/AlirezaAlizadehHaji" target="_blank">
+      <span class="contact-card-icon">⌨️</span>
+      <span>github.com/AlirezaAlizadehHaji</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────── -->
+<footer>
+  <p>Alireza Alizadeh Haji · Tehran, Iran · Built with HTML/CSS/JS · Hosted on GitHub Pages</p>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────── -->
+<script>
+// Typing animation
+const roles = [
+  "Backend Engineer",
+  "PhD Student in SE",
+  "Distributed Systems Architect",
+  ".NET & Python Developer",
+  "Agentic AI Researcher",
+];
+let ri = 0, ci = 0, deleting = false;
+const el = document.getElementById("typing-text");
+
+function type() {
+  const current = roles[ri];
+  el.textContent = deleting ? current.slice(0, ci--) : current.slice(0, ci++);
+  let delay = deleting ? 40 : 80;
+  if (!deleting && ci > current.length) { delay = 1800; deleting = true; }
+  else if (deleting && ci < 0) { deleting = false; ri = (ri + 1) % roles.length; ci = 0; delay = 300; }
+  setTimeout(type, delay);
+}
+type();
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".timeline-item, .project-card").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
